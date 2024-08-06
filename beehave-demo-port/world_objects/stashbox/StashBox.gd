@@ -1,0 +1,1 @@
+class_name StashBox extends RigidBody2D

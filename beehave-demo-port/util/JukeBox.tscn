@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2yl81kvf8gw8"]
+
+[ext_resource type="Script" path="res://util/JukeBox.gd" id="1"]
+
+[node name="JukeBox" type="Node2D"]
+script = ExtResource("1")

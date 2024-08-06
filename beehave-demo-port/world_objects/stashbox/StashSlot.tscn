@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://biws68n0rwauu"]
+
+[ext_resource type="Texture2D" uid="uid://rip7hpmubes0" path="res://assets/sprites/elements/Crops/kale_00.png" id="1_m3i3y"]
+[ext_resource type="Script" path="res://world_objects/stashbox/StashSlot.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dt0rqria3kwe1" path="res://world_objects/stashbox/StashBox.tscn" id="3"]
+
+[node name="StashSlot" type="Sprite2D"]
+texture = ExtResource("1_m3i3y")
+script = ExtResource("2")
+
+[node name="StashBox" parent="." instance=ExtResource("3")]
+visible = false
+collision_layer = 0
+collision_mask = 0

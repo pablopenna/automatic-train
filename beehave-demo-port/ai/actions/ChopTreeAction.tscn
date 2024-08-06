@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co2s2civ5tl8b"]
+
+[ext_resource type="Script" path="res://ai/actions/ChopTreeAction.gd" id="1"]
+
+[node name="ChopTreeAction" type="Node"]
+script = ExtResource("1")

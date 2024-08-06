@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cohq4pacqw7sx"]
+
+[ext_resource type="Script" path="res://ui/Sunnyside.gd" id="2"]
+
+[node name="Sunnyside" type="VBoxContainer"]
+script = ExtResource("2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Node2D" type="Node2D" parent="MarginContainer/Control"]
+position = Vector2(-10, -10)
+scale = Vector2(0.2, 0.2)
+
+[node name="DownloadButton" type="Button" parent="MarginContainer/Control/Node2D"]
+text = "Donwload Sunnyside"
+
+[connection signal="button_down" from="MarginContainer/Control/Node2D/DownloadButton" to="." method="_on_DownloadButton_button_down"]
+[connection signal="pressed" from="MarginContainer/Control/Node2D/DownloadButton" to="." method="_on_DownloadButton_pressed"]

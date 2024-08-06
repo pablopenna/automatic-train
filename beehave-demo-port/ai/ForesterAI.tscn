@@ -1,0 +1,45 @@
+[gd_scene load_steps=12 format=3 uid="uid://4a2ow5ihrsso"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="3"]
+[ext_resource type="PackedScene" path="res://ai/Rest.tscn" id="4"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="5"]
+[ext_resource type="PackedScene" path="res://ai/conditions/HasChoppedTreeCondition.tscn" id="6"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="7"]
+[ext_resource type="PackedScene" uid="uid://j8tn5pe04xkf" path="res://ai/actions/LeaveHouseAction.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://ai/actions/WalkToClosestTreeAction.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://ai/actions/PlantTreeAction.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://ai/actions/WaterTreeAction.tscn" id="12"]
+
+[node name="ForesterAI" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1")
+blackboard = NodePath("@Node@76104")
+actor = NodePath("")
+
+[node name="Either" type="Node" parent="."]
+script = ExtResource("5")
+
+[node name="WaitForTrees" type="Node" parent="Either"]
+script = ExtResource("2")
+
+[node name="NeedsToWait" type="Node" parent="Either/WaitForTrees"]
+script = ExtResource("5")
+
+[node name="HasNoChoppedTree" type="Node" parent="Either/WaitForTrees/NeedsToWait"]
+script = ExtResource("3")
+
+[node name="HasChoppedTree" parent="Either/WaitForTrees/NeedsToWait/HasNoChoppedTree" instance=ExtResource("6")]
+
+[node name="Rest" parent="Either/WaitForTrees" instance=ExtResource("4")]
+
+[node name="SequenceStarComposite" type="Node" parent="Either"]
+script = ExtResource("7")
+
+[node name="LeaveHouseAction" parent="Either/SequenceStarComposite" instance=ExtResource("8")]
+
+[node name="WalkToClosestTreeAction" parent="Either/SequenceStarComposite" instance=ExtResource("9")]
+
+[node name="PlantTreeAction" parent="Either/SequenceStarComposite" instance=ExtResource("10")]
+
+[node name="WaterTreeAction" parent="Either/SequenceStarComposite" instance=ExtResource("12")]
